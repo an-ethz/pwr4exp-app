@@ -15,6 +15,7 @@ if (length(missing_packages)) {
 }
 invisible(lapply(runtime_packages, library, character.only = TRUE))
 source(file.path("R", "app_helpers.R"), local = TRUE)
+source(file.path("R", "app_metadata.R"), local = TRUE)
 
 section_header <- function(icon_name, title, description) {
   div(
@@ -376,6 +377,7 @@ app_css <- "
     font-weight: 780;
   }
   .app-intro-card p { margin: 0; max-width: 760px; color: var(--muted); }
+  .research-group-name { font-weight: 650; }
 
   .workflow-map {
     display: grid;
@@ -732,8 +734,16 @@ app_css <- "
     color: #34524f;
     font-size: 12px;
   }
-  .download-area { margin-top: 14px; }
-  .download-area .btn { width: 100%; }
+  .download-area { border-top: 1px solid var(--border); }
+  #download_actions { display: flex; flex-direction: column; gap: 10px; }
+  .download-area .field-note { margin: 0; }
+  .download-area .btn { width: 100%; white-space: normal; }
+  .citation-panel { color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+  .citation-panel h3 { margin: 0 0 8px; color: var(--ink); font-size: 16px; font-weight: 740; }
+  .citation-panel p { margin: 0 0 12px; }
+  .citation-reference { line-height: 1.6; }
+  .citation-panel .btn { border: 1px solid var(--border); border-radius: 9px; white-space: normal; }
+  .results-citation { border-top: 1px solid var(--border); background: var(--surface-subtle); }
   .download-placeholder {
     padding: 10px 12px;
     border: 1px solid var(--border);
@@ -859,6 +869,9 @@ server<-function(input,output,session) {
                      ),
                      tags$li(
                        tags$a(icon("book-open"), " Method documentation", rel="noopener noreferrer", class="dropdown-item", href="https://an-ethz.github.io/pwr4exp/articles/pwr4exp.html", target="_blank")
+                     ),
+                     tags$li(
+                       actionButton("about_citation", tagList(icon("quote-left"), " Citation"), class = "dropdown-item")
                      )
                    )
           )
@@ -1018,6 +1031,10 @@ server<-function(input,output,session) {
                 div(
                   class = "panel-body download-area",
                   uiOutput("download_actions")
+                ),
+                div(
+                  class = "panel-body results-citation",
+                  citation_panel("download_citation")
                 ),
                 full_screen = TRUE
               )
@@ -1196,13 +1213,33 @@ server<-function(input,output,session) {
   output$download_actions <- renderUI({
     if (isTRUE(results_generated())) {
       tagList(
-        downloadButton("download_all", tagList(icon("download"), " Download results as CSV"), class = "btn-primary"),
+        downloadButton("download_all", "Download results as CSV", class = "btn-primary"),
         field_note("The export includes the selected design and the result tables currently shown above.")
       )
     } else {
       div(class = "download-placeholder", icon("lock"), " Run the calculation to enable download")
     }
   })
+
+  show_citation_modal <- function() {
+    showModal(modalDialog(
+      title = "Citation",
+      citation_panel("download_citation_modal", show_heading = FALSE),
+      easyClose = TRUE,
+      footer = modalButton("Close")
+    ))
+  }
+  observeEvent(input$about_citation, show_citation_modal())
+
+  for (download_id in c("download_citation", "download_citation_modal")) {
+    output[[download_id]] <- downloadHandler(
+      filename = function() "pwr4exp-citation.bib",
+      contentType = "application/x-bibtex",
+      content = function(file) {
+        writeLines(format(pwr4exp_reference, style = "Bibtex"), file, useBytes = TRUE)
+      }
+    )
+  }
   
   observe({
     if (!page_started()) {
@@ -1229,7 +1266,12 @@ server<-function(input,output,session) {
               class = "btn btn-primary",
               style="width:100%;"
             ),
-            p(class = "welcome-byline", "Developed by Ao Wang and Kai Wang")
+            p(
+              class = "welcome-byline",
+              "Developed by Ao Wang and Kai Wang",
+              tags$br(),
+              "Animal Nutrition, ETH Zurich"
+            )
           ),
           
           footer = NULL
