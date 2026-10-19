@@ -14,21 +14,6 @@
       "Version": "1.30.2-1",
       "Source": "Repository",
       "Priority": null,
-      "Depends": [
-        null
-      ],
-      "Imports": [
-        null
-      ],
-      "LinkingTo": [
-        null
-      ],
-      "Suggests": [
-        null
-      ],
-      "Enhances": [
-        null
-      ],
       "License": "BSL-1.0",
       "License_is_FOSS": null,
       "License_restricts_use": null,
@@ -238,18 +223,6 @@
       "Priority": null,
       "Depends": [
         "R (>= 3.0.0)"
-      ],
-      "Imports": [
-        null
-      ],
-      "LinkingTo": [
-        null
-      ],
-      "Suggests": [
-        null
-      ],
-      "Enhances": [
-        null
       ],
       "License": "GPL-2 | GPL-3",
       "License_is_FOSS": null,
@@ -477,9 +450,6 @@
         "backports (>= 1.1.0)",
         "utils"
       ],
-      "LinkingTo": [
-        null
-      ],
       "Suggests": [
         "R6",
         "fastmatch",
@@ -494,9 +464,6 @@
         "tinytest (>= 1.1.0)",
         "tibble"
       ],
-      "Enhances": [
-        null
-      ],
       "License": "BSD_3_clause + file LICENSE",
       "License_is_FOSS": null,
       "License_restricts_use": null,
@@ -510,9 +477,6 @@
       "Version": "0.5.1",
       "Source": "Repository",
       "Priority": null,
-      "Depends": [
-        null
-      ],
       "Imports": [
         "cli",
         "curl",
@@ -529,17 +493,11 @@
         "withr",
         "zip"
       ],
-      "LinkingTo": [
-        null
-      ],
       "Suggests": [
         "knitr",
         "rmarkdown",
         "showimage",
         "testthat (>= 3.0.0)"
-      ],
-      "Enhances": [
-        null
       ],
       "License": "MIT + file LICENSE",
       "License_is_FOSS": null,
@@ -604,18 +562,6 @@
       "Priority": "recommended",
       "Depends": [
         "R (>= 2.1)"
-      ],
-      "Imports": [
-        null
-      ],
-      "LinkingTo": [
-        null
-      ],
-      "Suggests": [
-        null
-      ],
-      "Enhances": [
-        null
       ],
       "License": "GPL",
       "License_is_FOSS": null,
@@ -771,9 +717,6 @@
       "Imports": [
         "methods"
       ],
-      "LinkingTo": [
-        null
-      ],
       "Suggests": [
         "bit64 (>= 4.0.0)",
         "bit (>= 4.0.4)",
@@ -783,9 +726,6 @@
         "yaml",
         "knitr",
         "markdown"
-      ],
-      "Enhances": [
-        null
       ],
       "License": "MPL-2.0 | file LICENSE",
       "License_is_FOSS": null,
@@ -1150,15 +1090,6 @@
       ],
       "Imports": [
         "codetools"
-      ],
-      "LinkingTo": [
-        null
-      ],
-      "Suggests": [
-        null
-      ],
-      "Enhances": [
-        null
       ],
       "License": "LGPL (>= 2.1)",
       "License_is_FOSS": null,
@@ -2056,16 +1987,10 @@
         "processx",
         "utils"
       ],
-      "LinkingTo": [
-        null
-      ],
       "Suggests": [
         "covr",
         "ps",
         "testthat (>= 3.0.0)"
-      ],
-      "Enhances": [
-        null
       ],
       "License": "MIT + file LICENSE",
       "License_is_FOSS": null,
@@ -2998,9 +2923,6 @@
         "usethis",
         "vdiffr (>=\n1.0.0)"
       ],
-      "Enhances": [
-        null
-      ],
       "License": "MIT + file LICENSE",
       "License_is_FOSS": null,
       "License_restricts_use": null,
@@ -3364,9 +3286,6 @@
       "Version": "1.4.4",
       "Source": "Repository",
       "Priority": null,
-      "Depends": [
-        null
-      ],
       "Imports": [
         "R6",
         "later (>= 1.2.0)"
@@ -3381,9 +3300,6 @@
         "testthat",
         "knitr",
         "rmarkdown"
-      ],
-      "Enhances": [
-        null
       ],
       "License": "GPL-2",
       "License_is_FOSS": null,

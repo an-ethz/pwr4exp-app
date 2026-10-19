@@ -51,6 +51,9 @@ jobs:
       - name: Restore locked R dependencies
         uses: r-lib/actions/setup-renv@v2
 
+      - name: Verify restored R dependencies
+        run: Rscript -e 'stopifnot(renv::status()$synchronized)'
+
       - name: Run regression tests
         run: Rscript tests/testthat.R
 
@@ -80,6 +83,9 @@ jobs:
 
       - name: Restore locked R dependencies
         uses: r-lib/actions/setup-renv@v2
+
+      - name: Verify restored R dependencies
+        run: Rscript -e 'stopifnot(renv::status()$synchronized)'
 
       - name: Deploy to shinyapps.io
         env:
